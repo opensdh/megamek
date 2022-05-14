@@ -2243,6 +2243,10 @@ public class Server implements Runnable {
         }
     }
 
+    private static String percentage(int left, int initial) {
+        return String.format("%.1f", 100.0 * left / initial);
+    }
+
     /**
      * Prepares for, presumably, the next phase. This typically involves
      * resetting the states of entities in the game and making sure the client
@@ -2457,11 +2461,12 @@ public class Server implements Runnable {
                     r.add(player.getColorForPlayer());
                     r.add(player.getBV());
                     r.add(player.getInitialBV());
-                    r.add(Double.toString(Math.round(((double) player.getBV() / player.getInitialBV()) * 10000.0) / 100.0));
+                    r.add(percentage(player.getBV(), player.getInitialBV()));
                     r.add(player.getFledBV());
                     r.add(player.getEntityCount());
                     r.add(player.getInitialEntityCount());
-                    r.add(Double.toString(Math.round(((double) player.getEntityCount() / player.getInitialEntityCount()) * 10000.0) / 100.0));
+                    r.add(percentage(player.getEntityCount(),
+                                     player.getInitialEntityCount()));
                     addReport(r);
                 }
             }
