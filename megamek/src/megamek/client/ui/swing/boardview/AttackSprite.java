@@ -371,15 +371,27 @@ class AttackSprite extends Sprite {
         weaponDescs.add(Messages.getString("BoardView1.Searchlight"));
     }
 
+    private static String htmlColor(Color c) {
+        return "<FONT COLOR=#" + Integer.toHexString(c.getRGB() & 0xFFFFFF) +
+            '>';
+    }
+
     @Override
     public StringBuffer getTooltip() {
         StringBuffer tipString = new StringBuffer();
-        tipString.append("<FONT COLOR=#");
-        tipString.append(Integer.toHexString(attackColor.getRGB() & 0xFFFFFF));
-        tipString.append(">");
-        tipString.append(attackerDesc
-                + "<BR>&nbsp;&nbsp;" + Messages.getString("BoardView1.on") + " " + targetDesc);
-        tipString.append("</FONT>");
+        tipString.append(htmlColor(attackColor));
+        tipString.append(attackerDesc);
+        tipString.append("</FONT><BR>&nbsp;&nbsp;");
+        tipString.append(Messages.getString("BoardView1.on"));
+        tipString.append(' ');
+        if(target instanceof Entity) {
+            tipString.append(htmlColor(((Entity) target).getOwner()
+                                       .getColour().getColour()));
+        }
+        tipString.append(targetDesc);
+        if(target instanceof Entity) {
+            tipString.append("</FONT>");
+        }
         for (String wpD: weaponDescs) {
             tipString.append("<BR>"+wpD);
         }
