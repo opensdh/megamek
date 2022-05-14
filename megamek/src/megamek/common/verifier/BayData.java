@@ -77,7 +77,7 @@ public enum BayData {
             (size, num) -> new RefrigeratedCargoBay(size, 1, num)),
     INSULATED_CARGO ("Cargo (Insulated)", 1/0.87, 0, CargoBay.techAdvancement(),
             (size, num) -> new InsulatedCargoBay(size, 1, num)),
-    LIVESTOCK_CARGO ("Cargo Livestock)", 1/0.83, 0, CargoBay.techAdvancement(),
+    LIVESTOCK_CARGO ("Cargo (Livestock)", 1/0.83, 0, CargoBay.techAdvancement(),
             (size, num) -> new LivestockCargoBay(size, 1, num));
     
     private final String name;

@@ -4838,7 +4838,7 @@ public class Server implements Runnable {
             updateVisibilityIndicator(losCache);
         }
 
-        // An entity that is not vulnerable to anti-TSM green smoke that has stayed in a smoke-filled
+        // An entity that is vulnerable to anti-TSM green smoke that has stayed in a smoke-filled
         // hex takes damage.
         if ((md.getHexesMoved() == 0)
                 && game.getBoard().contains(md.getFinalCoords())
